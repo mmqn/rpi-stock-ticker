@@ -69,7 +69,7 @@ const Ticker = ({ isFetching, symbol, price, priceTime, refetch }) => {
                 }}
               >
                 {isPriceIncreased ? '+$' : '-$'}
-                {priceChange.toFixed(4)}
+                {Math.abs(priceChange).toFixed(4)}
               </h5>
 
               <h5>{format(prevPriceInfo.priceTime, 'MMM dd yyyy hh:mm a')}</h5>
