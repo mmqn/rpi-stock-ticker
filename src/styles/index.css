@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'PT Mono';
+  src: url('./PT Mono.ttf') format('truetype');
+}
+
+body {
+  cursor: none;
+  margin: 0px;
+  overflow: hidden;
+  background-color: #000000;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1 {
+  margin: 0px;
+  font-family: 'PT Mono', monospace;
+  color: #ffffff;
+}
+
+h3 {
+  margin: 0px;
+  font-family: 'PT Mono', monospace;
+  color: #ffffff;
+}
+
+h4 {
+  margin: 0px;
+  font-family: 'PT Mono', monospace;
+  color: #ffffff;
+}
+
+button {
+  cursor: pointer;
+  height: 200px;
+  width: 200px;
+  padding: 10px;
+  background-color: transparent;
+  border: transparent;
+}
