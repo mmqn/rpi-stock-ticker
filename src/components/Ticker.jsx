@@ -56,7 +56,7 @@ const Ticker = ({ isFetching, symbol, price, priceTime, refetch }) => {
 
       {prevPriceInfo.price !== null && (
         <>
-          <h4
+          <h5
             style={{
               paddingTop: '10px',
               marginTop: '10px',
@@ -66,9 +66,9 @@ const Ticker = ({ isFetching, symbol, price, priceTime, refetch }) => {
           >
             {isPriceIncreased ? '+$' : '-$'}
             {priceChange.toFixed(4)}
-          </h4>
+          </h5>
 
-          <h4>{format(prevPriceInfo.priceTime, 'MMM dd yyyy hh:mm a')}</h4>
+          <h5>{format(prevPriceInfo.priceTime, 'MMM dd yyyy hh:mm a')}</h5>
         </>
       )}
     </button>

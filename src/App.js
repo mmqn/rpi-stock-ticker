@@ -3,8 +3,7 @@ import useFetch from './utils/useFetch';
 import StockTicker from './components/StockTickerWrapper';
 import CryptoTicker from './components/CryptoTickerWrapper';
 
-// TODO Use Firebase to set symbol and position (to calculate equity)
-// TODO Add normal stocks
+// TODO Calculate equity & profit using config endpoint
 
 const CONFIG_ENDPOINT =
   'https://personal-mmqn-default-rtdb.firebaseio.com/rpi-stock-ticker.json';
