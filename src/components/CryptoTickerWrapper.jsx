@@ -9,6 +9,11 @@ const CryptoTickerWrapper = ({ symbol, getEndpoint }) => {
     getEndpoint(symbol),
   );
 
+  if (errorData) {
+    console.error(errorData);
+    return <h3>Error retrieving crypto data</h3>;
+  }
+
   const { price, price_timestamp: priceTime } =
     responseData && !errorData
       ? responseData[0]

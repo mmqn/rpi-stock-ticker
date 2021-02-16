@@ -25,15 +25,22 @@ const endpointGetters = {
 const App = () => {
   const { responseData, errorData, isFetching } = useFetch(CONFIG_ENDPOINT);
 
+  if (errorData) {
+    console.error(errorData);
+    return <h3>Error retrieving configuration</h3>;
+  }
+
   const { symbol, type } =
     responseData && !errorData ? responseData : { symbol: '', type: '' };
 
   const Ticker = tickers[type];
   const getEndpoint = endpointGetters[type];
 
-  return !isFetching ? (
+  return isFetching ? (
+    'Initializing…'
+  ) : (
     <Ticker symbol={symbol} getEndpoint={getEndpoint} />
-  ) : null;
+  );
 };
 
 export default App;

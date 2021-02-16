@@ -9,6 +9,11 @@ const StockTickerWrapper = ({ symbol, getEndpoint }) => {
     getEndpoint(symbol),
   );
 
+  if (errorData) {
+    console.error(errorData);
+    return <h3>Error retrieving stock data</h3>;
+  }
+
   const { c: price, t: priceTime } =
     responseData && !errorData ? responseData : { c: 0, t: 0 };
 

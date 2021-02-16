@@ -24,8 +24,6 @@ button {
   padding: 10px;
   background-color: transparent;
   border: transparent;
-  color: #ffffff;
-  font-family: 'PT Mono', monospace;
 }
 
 h1,
@@ -35,4 +33,6 @@ h4,
 h5,
 h6 {
   margin: 0px;
+  font-family: 'PT Mono', monospace;
+  color: #ffffff;
 }

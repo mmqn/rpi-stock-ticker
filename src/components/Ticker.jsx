@@ -48,27 +48,33 @@ const Ticker = ({ isFetching, symbol, price, priceTime, refetch }) => {
 
       <h1>{symbol}</h1>
 
-      <h1 style={{ color: isPriceIncreased ? '#00ff9f' : '#ff3000' }}>
-        ${parseFloat(price).toFixed(4)}
-      </h1>
-
-      <h4>{isFetching ? '-' : format(priceTime, 'MMM dd yyyy hh:mm a')}</h4>
-
-      {prevPriceInfo.price !== null && (
+      {isFetching ? (
+        'Fetching…'
+      ) : (
         <>
-          <h5
-            style={{
-              paddingTop: '10px',
-              marginTop: '10px',
-              borderTop: '1px solid #ffffff',
-              color: isPriceIncreased ? '#00ff9f' : '#ff3000',
-            }}
-          >
-            {isPriceIncreased ? '+$' : '-$'}
-            {priceChange.toFixed(4)}
-          </h5>
+          <h1 style={{ color: isPriceIncreased ? '#00ff9f' : '#ff3000' }}>
+            ${parseFloat(price).toFixed(4)}
+          </h1>
 
-          <h5>{format(prevPriceInfo.priceTime, 'MMM dd yyyy hh:mm a')}</h5>
+          <h4>{isFetching ? '-' : format(priceTime, 'MMM dd yyyy hh:mm a')}</h4>
+
+          {prevPriceInfo.price !== null && (
+            <>
+              <h5
+                style={{
+                  paddingTop: '10px',
+                  marginTop: '10px',
+                  borderTop: '1px solid #ffffff',
+                  color: isPriceIncreased ? '#00ff9f' : '#ff3000',
+                }}
+              >
+                {isPriceIncreased ? '+$' : '-$'}
+                {priceChange.toFixed(4)}
+              </h5>
+
+              <h5>{format(prevPriceInfo.priceTime, 'MMM dd yyyy hh:mm a')}</h5>
+            </>
+          )}
         </>
       )}
     </button>
