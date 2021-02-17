@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { parseISO } from 'date-fns';
+// import { parseISO } from 'date-fns';
 import useFetch from '../utils/useFetch';
 import Ticker from './Ticker';
 
@@ -14,20 +14,22 @@ const CryptoTickerWrapper = ({ symbol, getEndpoint }) => {
     return <h3>Error retrieving crypto data</h3>;
   }
 
-  const { price, price_timestamp: priceTime } =
-    responseData && !errorData
-      ? responseData[0]
-      : {
-          price: 0,
-          price_timestamp: '',
-        };
+  // const { price, price_timestamp: priceTime } =
+  //   responseData && !errorData
+  //     ? responseData[0]
+  //     : {
+  //         price: 0,
+  //         price_timestamp: '',
+  //       };
+
+  const { price } = responseData && !errorData ? responseData[0] : { price: 0 };
 
   return (
     <Ticker
       isFetching={isFetching}
       symbol={symbol}
       price={parseFloat(price)}
-      priceTime={priceTime ? parseISO(priceTime) : new Date()}
+      // priceTime={priceTime ? parseISO(priceTime) : new Date()}
       refetch={refetch}
     />
   );

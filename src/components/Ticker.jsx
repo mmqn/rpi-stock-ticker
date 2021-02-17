@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-const Ticker = ({ isFetching, symbol, price, priceTime, refetch }) => {
+const Ticker = ({ isFetching, symbol, price, /* priceTime, */ refetch }) => {
   const [prevPriceInfo, setPrevPriceInfo] = useState({
     price: null,
     priceTime: null,
   });
   const [rotateDeg, setRotateDeg] = useState(0);
+
+  const currentDateTime = new Date();
 
   const priceChange =
     prevPriceInfo.price !== null
@@ -26,7 +28,8 @@ const Ticker = ({ isFetching, symbol, price, priceTime, refetch }) => {
         return newRotateDeg;
       });
     } else {
-      setPrevPriceInfo({ price, priceTime });
+      // setPrevPriceInfo({ price, priceTime });
+      setPrevPriceInfo({ price, priceTime: currentDateTime });
       refetch();
     }
   };
@@ -43,7 +46,7 @@ const Ticker = ({ isFetching, symbol, price, priceTime, refetch }) => {
           borderBottom: '1px solid #ffffff',
         }}
       >
-        {new Date().toDateString()}
+        {currentDateTime.toDateString()}
       </h3>
 
       <h1>{symbol}</h1>
@@ -56,7 +59,7 @@ const Ticker = ({ isFetching, symbol, price, priceTime, refetch }) => {
             ${parseFloat(price).toFixed(4)}
           </h1>
 
-          <h4>{isFetching ? '-' : format(priceTime, 'MMM dd yyyy hh:mm a')}</h4>
+          <h4>{isFetching ? '-' : format(currentDateTime, 'MMM dd yyyy hh:mm a')}</h4>
 
           {prevPriceInfo.price !== null && (
             <>
@@ -85,14 +88,14 @@ Ticker.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   symbol: PropTypes.string,
   price: PropTypes.number,
-  priceTime: PropTypes.instanceOf(Date),
+  // priceTime: PropTypes.instanceOf(Date),
   refetch: PropTypes.func.isRequired,
 };
 
 Ticker.defaultProps = {
   symbol: '',
   price: 0,
-  priceTime: '',
+  // priceTime: '',
 };
 
 export default Ticker;
