@@ -49,7 +49,7 @@ const Ticker = ({ isFetching, symbol, price, priceTime, refetch }) => {
       <h1>{symbol}</h1>
 
       {isFetching ? (
-        'Fetching…'
+        <h3>Fetching…</h3>
       ) : (
         <>
           <h1 style={{ color: isPriceIncreased ? '#00ff9f' : '#ff3000' }}>

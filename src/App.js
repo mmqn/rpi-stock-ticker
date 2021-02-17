@@ -37,7 +37,7 @@ const App = () => {
   const getEndpoint = endpointGetters[type];
 
   return isFetching ? (
-    'Initializing…'
+    <h3>Initializing…</h3>
   ) : (
     <Ticker symbol={symbol} getEndpoint={getEndpoint} />
   );
