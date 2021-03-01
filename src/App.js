@@ -1,5 +1,6 @@
 import React from 'react';
 import useFetch from './utils/useFetch';
+import AppContext from './utils/AppContext';
 import StockTicker from './components/StockTickerWrapper';
 import CryptoTicker from './components/CryptoTickerWrapper';
 
@@ -30,16 +31,22 @@ const App = () => {
     return <h3>Error retrieving configuration</h3>;
   }
 
-  const { symbol, type } =
+  const appData =
     responseData && !errorData ? responseData : { symbol: '', type: '' };
+
+  const { symbol, type, position, config } = appData;
 
   const Ticker = tickers[type];
   const getEndpoint = endpointGetters[type];
 
-  return isFetching ? (
-    <h3>Initializing…</h3>
-  ) : (
-    <Ticker symbol={symbol} getEndpoint={getEndpoint} />
+  return (
+    <AppContext.Provider value={appData}>
+      {isFetching ? (
+        <h3>Initializing…</h3>
+      ) : (
+        <Ticker symbol={symbol.toUpperCase()} getEndpoint={getEndpoint} />
+      )}
+    </AppContext.Provider>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useFetch = url => {
+const useFetch = (url, options) => {
   const [responseData, setResponseData] = useState(undefined);
   const [errorData, setErrorData] = useState(undefined);
   const [refetchCounter, setRefetchCounter] = useState(0);
@@ -11,12 +11,12 @@ const useFetch = url => {
     setErrorData(undefined);
 
     if (url) {
-      fetch(url)
+      fetch(url, options)
         .then(response => response.json())
         .then(data => setResponseData(data))
         .catch(error => setErrorData(error));
     }
-  }, [url, refetchCounter]);
+  }, [url, options, refetchCounter]);
 
   return {
     responseData,
