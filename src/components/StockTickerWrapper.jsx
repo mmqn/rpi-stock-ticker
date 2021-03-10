@@ -11,7 +11,7 @@ const StockTickerWrapper = ({ symbol, getEndpoint }) => {
   if (errorData) {
     console.error(errorData);
     return <h3>Error retrieving stock data</h3>;
-  }
+  } else console.log({ stockResponseData: responseData });
 
   const { c: price } = responseData && !errorData ? responseData : { c: 0 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import descriptorStyle from '../styles/descriptorStyle';
+import { descriptorStyle } from '../../styles/getStyles';
 
 const PositionDescriptor = ({ curPrice, position }) => {
   const equity = position.shares * curPrice;

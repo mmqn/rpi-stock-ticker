@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
-import AppContext from '../utils/AppContext';
-import PrevPriceDescriptor from './PrevPriceDescriptor';
-import PositionDescriptor from './PositionDescriptor';
+import { useAppContext } from '../utils/AppContext';
+import { getGainsLossColor } from '../styles/getStyles';
+import PrevPriceDescriptor from './descriptors/PrevPriceDescriptor';
+import PositionDescriptor from './descriptors/PositionDescriptor';
 
 const Ticker = ({ isFetching, symbol, price, refetch }) => {
   const [prevPriceInfo, setPrevPriceInfo] = useState({
@@ -12,16 +13,14 @@ const Ticker = ({ isFetching, symbol, price, refetch }) => {
   });
   const [rotateDeg, setRotateDeg] = useState(0);
 
-  const { position } = useContext(AppContext);
+  const { position } = useAppContext();
 
   const currentDateTime = new Date();
 
-  // const priceChange =
-  //   prevPriceInfo.price !== null
-  //     ? parseFloat(price || 0) - prevPriceInfo.price
-  //     : 0;
-
-  // const isPriceIncreased = priceChange >= 0;
+  const isPriceIncreased =
+    prevPriceInfo.price !== null
+      ? parseFloat(price || 0) - prevPriceInfo.price >= 0
+      : true;
 
   const handleRotate = () =>
     setRotateDeg(prevState => {
@@ -58,7 +57,9 @@ const Ticker = ({ isFetching, symbol, price, refetch }) => {
         <h3>Fetching…</h3>
       ) : (
         <>
-          <h1 style={{ color: '#00ff9f' }}>${parseFloat(price).toFixed(4)}</h1>
+          <h1 style={{ color: getGainsLossColor(isPriceIncreased) }}>
+            ${parseFloat(price).toFixed(4)}
+          </h1>
 
           <h4>
             {isFetching ? '-' : format(currentDateTime, 'MMM dd yyyy hh:mm a')}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
-import descriptorStyle from '../styles/descriptorStyle';
+import { descriptorStyle } from '../../styles/getStyles';
 
 const PrevPriceDescriptor = ({ curPrice, prevPrice, prevPriceTime }) => {
   const priceChange =
